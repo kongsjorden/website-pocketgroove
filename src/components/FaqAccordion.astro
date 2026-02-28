@@ -1,0 +1,60 @@
+---
+interface Props {
+  question: string;
+  answer: string;
+  id: string;
+}
+
+const { question, answer, id } = Astro.props;
+---
+
+<div class="border-b border-border last:border-b-0">
+  <button
+    class="faq-toggle w-full flex items-center justify-between py-5 text-left group"
+    aria-expanded="false"
+    aria-controls={`faq-${id}`}
+    data-faq-id={id}
+  >
+    <span class="font-display font-medium text-text group-hover:text-primary transition-colors pr-4">
+      {question}
+    </span>
+    <span class="faq-icon flex-shrink-0 w-6 h-6 rounded-full bg-surface flex items-center justify-center transition-transform duration-300">
+      <svg class="w-4 h-4 text-text-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+      </svg>
+    </span>
+  </button>
+  <div
+    id={`faq-${id}`}
+    class="faq-content overflow-hidden transition-all duration-300 max-h-0"
+  >
+    <div class="pb-5 text-text-muted leading-relaxed" set:html={answer} />
+  </div>
+</div>
+
+<script>
+  document.querySelectorAll('.faq-toggle').forEach(button => {
+    button.addEventListener('click', () => {
+      const id = button.getAttribute('data-faq-id');
+      const content = document.getElementById(`faq-${id}`);
+      const icon = button.querySelector('.faq-icon');
+      const isOpen = button.getAttribute('aria-expanded') === 'true';
+
+      if (isOpen) {
+        button.setAttribute('aria-expanded', 'false');
+        content!.style.maxHeight = '0';
+        icon!.style.transform = 'rotate(0deg)';
+      } else {
+        button.setAttribute('aria-expanded', 'true');
+        content!.style.maxHeight = content!.scrollHeight + 'px';
+        icon!.style.transform = 'rotate(180deg)';
+      }
+    });
+  });
+</script>
+
+<style>
+  .font-display {
+    font-family: 'Outfit', sans-serif;
+  }
+</style>

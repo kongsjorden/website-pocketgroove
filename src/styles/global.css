@@ -1,0 +1,42 @@
+@import "tailwindcss";
+
+@theme {
+  /* Rust & Groove color palette */
+  --color-background: #1A1714;
+  --color-background-light: #2A2520;
+  --color-surface: #33302B;
+  --color-surface-hover: #3D3832;
+  --color-primary: #C4652A;
+  --color-primary-hover: #E07830;
+  --color-secondary: #D4A030;
+  --color-text: #E8DCC8;
+  --color-text-muted: #B8A890;
+  --color-text-dim: #8A7E6E;
+  --color-border: #4A4238;
+
+  /* Typography */
+  --font-sans: 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: ui-monospace, 'SF Mono', 'Cascadia Code', monospace;
+}
+
+/* Base styles */
+html {
+  background-color: var(--color-background);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+}
+
+body {
+  min-height: 100vh;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Selection color */
+::selection {
+  background-color: var(--color-primary);
+  color: white;
+}

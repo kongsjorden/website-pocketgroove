@@ -1,0 +1,44 @@
+---
+interface Props {
+  src: string;
+  alt: string;
+  class?: string;
+  size?: 'sm' | 'md' | 'lg';
+}
+
+const { src, alt, class: className = '', size = 'md' } = Astro.props;
+
+const sizes = {
+  sm: 'w-[220px]',
+  md: 'w-[260px] md:w-[280px]',
+  lg: 'w-[280px] md:w-[320px]',
+};
+---
+
+<div class={`relative ${sizes[size]} ${className}`}>
+  <!-- Phone outer frame -->
+  <div class="relative bg-gradient-to-b from-zinc-700 to-zinc-900 rounded-[2.5rem] p-2.5 shadow-2xl shadow-black/40">
+    <!-- Phone inner bezel -->
+    <div class="relative bg-black rounded-[2rem] overflow-hidden">
+      <!-- Dynamic Island -->
+      <div class="absolute top-3 left-1/2 -translate-x-1/2 w-24 h-6 bg-black rounded-full z-10"></div>
+
+      <!-- Screen content -->
+      <div class="relative aspect-[9/19.5] overflow-hidden">
+        <img
+          src={src}
+          alt={alt}
+          class="w-full h-full object-cover object-top"
+          loading="lazy"
+        />
+        <!-- Screen reflection -->
+        <div class="absolute inset-0 bg-gradient-to-tr from-transparent via-white/3 to-white/8 pointer-events-none"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Side buttons -->
+  <div class="absolute right-[-2px] top-28 w-[3px] h-10 bg-zinc-600 rounded-l"></div>
+  <div class="absolute left-[-2px] top-24 w-[3px] h-6 bg-zinc-600 rounded-r"></div>
+  <div class="absolute left-[-2px] top-[7.5rem] w-[3px] h-6 bg-zinc-600 rounded-r"></div>
+</div>

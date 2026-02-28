@@ -1,0 +1,195 @@
+---
+import Layout from '../layouts/Layout.astro';
+import FaqAccordion from '../components/FaqAccordion.astro';
+
+const faqCategories = [
+  {
+    title: 'Training Basics',
+    icon: 'training',
+    faqs: [
+      {
+        id: 'what-is-pocketgroove',
+        question: 'What is PocketGroove?',
+        answer: 'PocketGroove is a rhythm training app that helps musicians develop their internal clock. You tap along to a metronome while the app measures your timing precision in milliseconds, showing you exactly where each tap lands relative to the beat.',
+      },
+      {
+        id: 'need-instrument',
+        question: 'Do I need an instrument to use PocketGroove?',
+        answer: 'No! PocketGroove is instrument-free. You simply tap the screen in time with the metronome. This isolates rhythm from technique, letting you focus purely on timing without worrying about notes, fingering, or tone.',
+      },
+      {
+        id: 'how-tapping-helps',
+        question: 'How does tapping help improve my playing?',
+        answer: 'Rhythm is a transferable skill. By training your timing sense in isolation, you build a stronger internal clock that carries over to any instrument. Many professional musicians use tap-based exercises as part of their practice routine.',
+      },
+      {
+        id: 'five-phases',
+        question: 'What are the 5 training phases?',
+        answer: '<strong>Phase 1: Foundation</strong> — Quarter notes and basic timing.<br/><strong>Phase 2: Subdivision</strong> — Eighth notes and counting subdivisions.<br/><strong>Phase 3: Syncopation</strong> — Offbeats and displaced accents.<br/><strong>Phase 4: Complex</strong> — Mixed rhythmic patterns.<br/><strong>Phase 5: Mastery</strong> — Advanced syncopated rhythms and feel training.',
+      },
+    ],
+  },
+  {
+    title: 'Game Modes & Features',
+    icon: 'features',
+    faqs: [
+      {
+        id: 'practice-mode',
+        question: 'What is Practice mode?',
+        answer: 'Practice mode lets you work through any level at your own pace with no penalty for mistakes. It\'s ideal for learning new patterns and building confidence before testing yourself in other modes.',
+      },
+      {
+        id: 'survival-mode',
+        question: 'How does Survival mode work?',
+        answer: 'In Survival mode, you must maintain consistent timing. If your accuracy drops too low, the run ends. It\'s a test of endurance and focus — how long can you stay in the pocket?',
+      },
+      {
+        id: 'speed-challenge',
+        question: 'What is Speed Challenge?',
+        answer: 'Speed Challenge starts at a comfortable tempo and gradually increases the BPM. Your goal is to maintain accuracy as the tempo pushes higher. It\'s great for expanding your comfortable tempo range.',
+      },
+      {
+        id: 'feel-training',
+        question: 'What is Feel Training?',
+        answer: 'Feel Training goes beyond playing "on the grid." You practice intentionally placing taps slightly ahead (pushing, like funk) or behind the beat (laying back, like neo-soul). It trains the subtle art of groove and musical feel.',
+      },
+      {
+        id: 'ghost-tap',
+        question: 'What is Ghost Tap Playback?',
+        answer: 'After completing a level, Ghost Tap Playback lets you hear your taps replayed over the metronome. This audio feedback helps you understand how your timing felt from the listener\'s perspective.',
+      },
+    ],
+  },
+  {
+    title: 'Privacy & Technical',
+    icon: 'privacy',
+    faqs: [
+      {
+        id: 'offline',
+        question: 'Does PocketGroove work offline?',
+        answer: 'Yes! PocketGroove works completely offline. No internet connection is ever needed. All your progress, settings, and data stay on your device.',
+      },
+      {
+        id: 'data-collection',
+        question: 'Does the app collect any data?',
+        answer: 'None. PocketGroove collects zero data. There are no analytics, no tracking, no accounts, and no network connections. Everything stays on your device. See our <a href="/privacy" class="text-primary hover:underline">Privacy Policy</a> for details.',
+      },
+      {
+        id: 'ios-requirement',
+        question: 'What iOS version is required?',
+        answer: 'PocketGroove requires iOS 17.0 or later and runs on iPhone.',
+      },
+      {
+        id: 'android',
+        question: 'Is there an Android version?',
+        answer: 'Not currently. PocketGroove is iOS-only at launch. An Android version may be considered in the future based on demand.',
+      },
+    ],
+  },
+  {
+    title: 'Support',
+    icon: 'support',
+    faqs: [
+      {
+        id: 'get-help',
+        question: 'How do I get help or ask questions?',
+        answer: 'Visit our <a href="/support" class="text-primary hover:underline">Support page</a> to access GitHub Discussions where you can ask questions, share tips, and discuss features with other users.',
+      },
+      {
+        id: 'report-bug',
+        question: 'How do I report a bug?',
+        answer: 'You can report bugs through <a href="https://github.com/kongsjorden/website-pocketgroove/issues" class="text-primary hover:underline" target="_blank" rel="noopener noreferrer">GitHub Issues</a>. Include your device model, iOS version, and steps to reproduce the problem. Screenshots or screen recordings are very helpful.',
+      },
+    ],
+  },
+];
+---
+
+<Layout title="FAQ" description="Frequently asked questions about PocketGroove rhythm training app.">
+  <section class="pt-32 pb-20 md:pt-40">
+    <div class="max-w-3xl mx-auto px-6">
+      <h1 class="font-display font-bold text-4xl md:text-5xl text-text text-center mb-6">
+        Frequently Asked Questions
+      </h1>
+      <p class="text-text-muted text-lg text-center mb-12">
+        Find answers to common questions about PocketGroove.
+      </p>
+
+      <div class="space-y-12">
+        {faqCategories.map(category => (
+          <div>
+            <h2 class="font-display font-semibold text-xl text-text mb-4 flex items-center gap-3">
+              <span class="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center">
+                {category.icon === 'training' && (
+                  <svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                  </svg>
+                )}
+                {category.icon === 'features' && (
+                  <svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                  </svg>
+                )}
+                {category.icon === 'privacy' && (
+                  <svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+                  </svg>
+                )}
+                {category.icon === 'support' && (
+                  <svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                  </svg>
+                )}
+              </span>
+              {category.title}
+            </h2>
+            <div class="bg-surface rounded-xl border border-border overflow-hidden">
+              {category.faqs.map(faq => (
+                <FaqAccordion
+                  question={faq.question}
+                  answer={faq.answer}
+                  id={faq.id}
+                />
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <!-- Still have questions -->
+      <div class="mt-16 p-8 bg-surface rounded-2xl border border-border text-center">
+        <h2 class="font-display font-semibold text-xl text-text mb-3">
+          Still have questions?
+        </h2>
+        <p class="text-text-muted mb-6">
+          Can't find what you're looking for? Reach out to us!
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a
+            href="https://github.com/kongsjorden/website-pocketgroove/discussions"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center justify-center gap-2 px-6 py-3 bg-primary hover:bg-primary-hover text-white font-semibold rounded-xl transition-colors"
+          >
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+            </svg>
+            Ask on GitHub
+          </a>
+          <a
+            href="/support"
+            class="inline-flex items-center justify-center gap-2 px-6 py-3 bg-surface-hover hover:bg-border text-text font-semibold rounded-xl border border-border transition-colors"
+          >
+            Contact Support
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .font-display {
+    font-family: 'Outfit', sans-serif;
+  }
+</style>
